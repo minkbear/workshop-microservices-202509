@@ -45,7 +45,7 @@ List of plugins in Kong manager
 * Add service
 * Add plugin `demo-auth` to service
   * http/https
-  * URl=path to auth-service
+  * URl=http://auth-service:1323/auth
 * Add route to service
 
 
@@ -65,4 +65,17 @@ $curl http://127.0.0.1:8001/services/demo-api/routes \
 
 Check
 * https://jsonplaceholder.typicode.com/users/1
+* http://localhost:8000/test/users/1
+
+## 4. Start auth-service
+```
+$docker compose build auth-service
+$docker compose up -d auth-service
+```
+
+List of urls
+* http://localhost:1323/
+* http://localhost:1323/auth
+
+Check from API Gateway
 * http://localhost:8000/test/users/1

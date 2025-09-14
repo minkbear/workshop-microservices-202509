@@ -1,0 +1,13 @@
+networks:
+  kong-net:
+    name: compose_kong-net
+    external: true
+      
+
+services:
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "1323:1323"
+    networks:
+      - kong-net

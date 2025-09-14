@@ -94,7 +94,7 @@ Add plugins in Kong with Global scope
       * traces_endpoint: http://localhost:4318/v1/traces
       * logs_endpoint: http://localhost:4318/v1/logs
 
-## 5. Start [LGTM Stack](https://github.com/grafana/docker-otel-lgtm)
+## 6. Start [LGTM Stack](https://github.com/grafana/docker-otel-lgtm)
 * Log
 * Grafana
 * Trace
@@ -111,4 +111,17 @@ Edit traces_endpoint
 Check data in Grafana dashboard
 * http://localhost:3000
 
+## 7. Tracing with Python service
+* [FastAPI](https://fastapi.tiangolo.com/)
+* [OpenTelemetry](https://opentelemetry.io/)
+
+Build and run
+```
+$docker compose build python-service
+$docker compose up -d python-service
+```
+
+List of urls
+* http://localhost:9001
+* http://localhost:9001/health
     

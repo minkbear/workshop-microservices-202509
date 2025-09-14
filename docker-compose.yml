@@ -29,3 +29,13 @@ services:
       - "16686:16686"
     networks:
       - kong-net
+  
+  python-service:
+    build: ./python-service
+    ports:
+      - "9001:8000"
+    environment:
+      - OTEL_RESOURCE_ATTRIBUTES=service.name=python-service
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://lgtm:4318/v1/traces
+    networks:
+      - kong-net

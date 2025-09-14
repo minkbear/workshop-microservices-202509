@@ -59,9 +59,9 @@ services:
   db:
     image: postgres:16.2
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
-      POSTGRES_DB: demo
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=demo
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "user"]
       interval: 5s
@@ -70,3 +70,5 @@ services:
     volumes:
       - ./postgres/tables.sql:/docker-entrypoint-initdb.d/1.sql
       - ./postgres/data.sql:/docker-entrypoint-initdb.d/2.sql
+    networks:
+      - kong-net

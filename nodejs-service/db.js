@@ -7,7 +7,7 @@ const getData = async () => {
             port: 5432,
             database: 'demo',
             user: 'user',
-            password: 'pass',
+            password: 'password',
         })
         await client.connect()
 

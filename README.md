@@ -184,5 +184,7 @@ $curl http://127.0.0.1:8001/services/nodejs-service/routes \
 ```
 
 Check from API Gateway
-* http://localhost:8000/nodejs/
+* http://localhost:8000/nodejs
 * http://localhost:8000/nodejs/health
+* http://localhost:8000/nodejs/call-db
+* http://localhost:8000/nodejs/steps

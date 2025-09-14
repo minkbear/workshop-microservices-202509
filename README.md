@@ -44,18 +44,25 @@ List of plugins in Kong manager
 ## 3. Working with Kong API Gateway
 * Add service
 * Add plugin `demo-auth` to service
+  * http/https
+  * URl=path to auth-service
 * Add route to service
 
+
+Add service
 ```
 $curl http://127.0.0.1:8001/services \
     -d name=demo-api \
     -d url=https://jsonplaceholder.typicode.com
 
-
+```
+Add route to service
+```
 $curl http://127.0.0.1:8001/services/demo-api/routes \
     -d name=demo-api \
 	-d 'paths[]=/test'
 ```
 
 Check
-* http://localhost:8000/
+* https://jsonplaceholder.typicode.com/users/1
+* http://localhost:8000/test/users/1

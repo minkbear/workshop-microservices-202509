@@ -1,4 +1,6 @@
 # Workshop :: Microservices develop, test and deploy
+* API gateway
+* Distributed Tracing with OpenTelemetry
 
 
 ## 1. API Gateway with [Kong](https://github.com/Kong/kong)

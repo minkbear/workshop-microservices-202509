@@ -80,7 +80,7 @@ List of urls
 Check from API Gateway
 * http://localhost:8000/test/users/1
 
-## 4. Add observability for services
+## 5. Add observability for services
 * List of services
   * API gateway with Kong
   * Auth service
@@ -95,13 +95,14 @@ Add plugins in Kong with Global scope
       * logs_endpoint: http://localhost:4318/v1/logs
 
 ## 5. Start [LGTM Stack](https://github.com/grafana/docker-otel-lgtm)
-* L
-* G
-* T
-* M
+* Log
+* Grafana
+* Trace
+* Metric
 
 ```
 $docker compose up -d lgtm
+$docker compose up ps
 ```
 
 Edit traces_endpoint
@@ -109,4 +110,5 @@ Edit traces_endpoint
 
 Check data in Grafana dashboard
 * http://localhost:3000
+
     

@@ -79,3 +79,29 @@ List of urls
 
 Check from API Gateway
 * http://localhost:8000/test/users/1
+
+## 4. Add observability for services
+* List of services
+  * API gateway with Kong
+  * Auth service
+
+Add plugins in Kong with Global scope
+* http://localhost:8002/plugins
+  * New plugin
+    * Metric with [prometheus](https://developer.konghq.com/plugins/prometheus)
+      * http://localhost:8001/metrics
+    * Trace and Log with [opentelemetry](https://developer.konghq.com/plugins/opentelemetry)
+      * traces_endpoint: http://localhost:4318/v1/traces
+      * logs_endpoint: http://localhost:4318/v1/logs
+
+## 5. Start [LGTM Stack](https://github.com/grafana/docker-otel-lgtm)
+```
+$docker compose up -d lgtm
+```
+
+Edit traces_endpoint
+* http://lgtm:4318/v1/traces
+
+Check data in Grafana dashboard
+* http://localhost:3000
+    

@@ -95,6 +95,11 @@ Add plugins in Kong with Global scope
       * logs_endpoint: http://localhost:4318/v1/logs
 
 ## 5. Start [LGTM Stack](https://github.com/grafana/docker-otel-lgtm)
+* L
+* G
+* T
+* M
+
 ```
 $docker compose up -d lgtm
 ```

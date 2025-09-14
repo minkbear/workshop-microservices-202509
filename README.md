@@ -115,7 +115,7 @@ Check data in Grafana dashboard
 * [FastAPI](https://fastapi.tiangolo.com/)
 * [OpenTelemetry](https://opentelemetry.io/)
 
-Build and run
+### 7.1 Build and run
 ```
 $docker compose build python-service
 $docker compose up -d python-service
@@ -124,4 +124,28 @@ $docker compose up -d python-service
 List of urls
 * http://localhost:9001
 * http://localhost:9001/health
+
+### 7.2 Add pythin-service to API gateway
+* Add service
+* Add route to service
+
+Add service
+```
+$curl http://127.0.0.1:8001/services \
+    -d name=python-service \
+    -d url=http://python-service:8000
+
+```
+
+Add route to service
+```
+$curl http://127.0.0.1:8001/services/python-service/routes \
+    -d name=python-service \
+	-d 'paths[]=/python'
+```
+
+Check from API Gateway
+* http://localhost:8000/python/
+* http://localhost:8000/python/health
+
     

@@ -125,7 +125,7 @@ List of urls
 * http://localhost:9001
 * http://localhost:9001/health
 
-### 7.2 Add pythin-service to API gateway
+### 7.2 Add python-service to API gateway
 * Add service
 * Add route to service
 
@@ -148,4 +148,41 @@ Check from API Gateway
 * http://localhost:8000/python/
 * http://localhost:8000/python/health
 
-    
+## 8. Tracing with NodeJS service
+* [Express](https://expressjs.com/)
+* [OpenTelemetry](https://opentelemetry.io/)
+* Database with PostgreSQL
+
+### 8.1 Build and run
+```
+$docker compose build nodejs-service
+$docker compose up -d nodejs-service
+```
+
+List of urls
+* http://localhost:9002
+* http://localhost:9002/call-db
+* http://localhost:9002/steps
+
+### 8.2 Add nodejs-service to API gateway
+* Add service
+* Add route to service
+
+Add service
+```
+$curl http://127.0.0.1:8001/services \
+    -d name=nodejs-service \
+    -d url=http://nodejs-service:3000
+
+```
+
+Add route to service
+```
+$curl http://127.0.0.1:8001/services/nodejs-service/routes \
+    -d name=nodejs-service \
+	-d 'paths[]=/nodejs'
+```
+
+Check from API Gateway
+* http://localhost:8000/nodejs/
+* http://localhost:8000/nodejs/health

@@ -39,3 +39,34 @@ services:
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://lgtm:4318/v1/traces
     networks:
       - kong-net
+
+  nodejs-service:
+    build: ./nodejs-service
+    ports:
+      - "9002:3000"
+    environment:
+      - DB_HOST=db
+      - OTEL_SERVICE_NAME=nodejs-service
+      - OTEL_COLLECTOR_SERVER=http://lgtm:4318/v1/traces
+      - OTEL_RESOURCE_ATTRIBUTES=service.name=nodejs-service
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://lgtm:4318/v1/traces
+    networks:
+      - kong-net
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16.2
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: demo
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./postgres/tables.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./postgres/data.sql:/docker-entrypoint-initdb.d/2.sql

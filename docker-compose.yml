@@ -72,3 +72,12 @@ services:
       - ./postgres/data.sql:/docker-entrypoint-initdb.d/2.sql
     networks:
       - kong-net
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+    networks:
+      - kong-net

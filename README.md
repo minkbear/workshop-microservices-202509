@@ -192,3 +192,53 @@ Check from API Gateway
 * http://localhost:8000/nodejs/health
 * http://localhost:8000/nodejs/call-db
 * http://localhost:8000/nodejs/steps
+
+## 9. Application metrics with [Prometheus](https://prometheus.io/)
+* API gateway with Kong
+  * http://localhost:8001/metrics
+* Python service
+  * http://localhost:9001/metrics
+* NodeJS service
+  * http://localhost:9002/metrics
+
+### 9.1 Install and config Prometheus server
+* Config in file `prometheus/prometheus.yml`
+* Start server
+
+File `prometheus.yml`
+```
+scrape_configs:
+  - job_name: 'api-gateway'
+    scrape_interval: 5s
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['kong:8001']
+        labels:
+          application: 'kong'
+
+  - job_name: 'python-service'
+    scrape_interval: 5s
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['python-service:8000']
+        labels:
+          application: 'python-service'
+          
+  - job_name: 'nodejs-service'
+    scrape_interval: 5s
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['nodejs-service:3000']
+        labels:
+          application: 'nodejs-service'
+```
+
+Start server
+```
+$docker compose up -d prometheus
+$docker compose ps
+```
+
+Access to prometheus
+* http://localhost:9090
+  * Go to menu Status => Target health

@@ -10,6 +10,7 @@ $go run main.go
 List of urls
 * http://localhost:1323/
 * http://localhost:1323/auth
+* http://localhost:1323/metrics
 
 ## 2. Run project with Docker 
 ```

@@ -78,6 +78,7 @@ $docker compose up -d auth-service
 List of urls
 * http://localhost:1323/
 * http://localhost:1323/auth
+* http://localhost:1323/metrics
 
 Check from API Gateway
 * http://localhost:8000/test/users/1

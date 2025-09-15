@@ -13,6 +13,10 @@ from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExport
 # Import Prometheus Instrumentator
 from prometheus_fastapi_instrumentator import Instrumentator
 
+# Instrument psycopg2 for database tracing
+from opentelemetry.instrumentation.psycopg2 import Psycopg2Instrumentor
+Psycopg2Instrumentor().instrument()
+
 
 # Create an OTLPSpanExporter
 # This will send traces to the OTel Collector at the specified endpoint.

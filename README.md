@@ -128,6 +128,7 @@ List of urls
 * http://localhost:9001
 * http://localhost:9001/metrics
 * http://localhost:9001/health
+* http://localhost:9001/articles
 
 ### 7.2 Add python-service to API gateway
 * Add service

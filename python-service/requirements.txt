@@ -6,3 +6,4 @@ opentelemetry-instrumentation-fastapi
 opentelemetry-exporter-otlp
 prometheus-fastapi-instrumentator
 psycopg2
+opentelemetry-instrumentation-psycopg2

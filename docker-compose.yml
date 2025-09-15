@@ -39,6 +39,10 @@ services:
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://lgtm:4318/v1/traces
     networks:
       - kong-net
+    depends_on:
+      db:
+        condition: service_healthy
+
 
   nodejs-service:
     build: ./nodejs-service

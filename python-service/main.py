@@ -14,6 +14,7 @@ from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExport
 from prometheus_fastapi_instrumentator import Instrumentator
 
 # Instrument psycopg2 for database tracing
+import psycopg2
 from opentelemetry.instrumentation.psycopg2 import Psycopg2Instrumentor
 Psycopg2Instrumentor().instrument()
 
@@ -45,3 +46,28 @@ def read_root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
+
+
+# Get data from postgresql database with psycopg2
+@app.get("/articles")
+def read_articles():
+    try:
+        conn = psycopg2.connect(
+            dbname="demo",
+            user="user",
+            password="password",
+            host="db",
+            port="5432",
+            sslmode="disable"
+        )
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM articles")
+        articles = cursor.fetchall()
+    except psycopg2.Error as e:
+        return {"error": f"Database error: {str(e)}"}
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+    return {"articles": articles}

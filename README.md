@@ -125,6 +125,7 @@ $docker compose up -d python-service
 
 List of urls
 * http://localhost:9001
+* http://localhost:9001/metrics
 * http://localhost:9001/health
 
 ### 7.2 Add python-service to API gateway
@@ -163,6 +164,7 @@ $docker compose up -d nodejs-service
 
 List of urls
 * http://localhost:9002
+* http://localhost:9002/metrics
 * http://localhost:9002/call-db
 * http://localhost:9002/steps
 

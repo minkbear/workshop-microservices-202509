@@ -10,6 +10,9 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor
 # Import the OTLP Exporter
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 
+# Import Prometheus Instrumentator
+from prometheus_fastapi_instrumentator import Instrumentator
+
 
 # Create an OTLPSpanExporter
 # This will send traces to the OTel Collector at the specified endpoint.
@@ -27,6 +30,8 @@ trace.set_tracer_provider(provider)
 
 app = FastAPI()
 FastAPIInstrumentor.instrument_app(app)
+Instrumentator().instrument(app).expose(app)
+
 
 @app.get("/")
 def read_root():
